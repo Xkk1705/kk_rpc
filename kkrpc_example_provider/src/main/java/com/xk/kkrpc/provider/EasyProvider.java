@@ -1,6 +1,8 @@
 package com.xk.kkrpc.provider;
 
+import com.xk.kkrpc.RpcApplication;
 import com.xk.kkrpc.common.service.UserService;
+import com.xk.kkrpc.config.RpcConfig;
 import com.xk.kkrpc.register.LocalRegister;
 import com.xk.kkrpc.service.VertxHttpServer;
 
@@ -10,6 +12,7 @@ public class EasyProvider {
         LocalRegister.register(UserService.class.getName(), UserServiceImpl.class);
         // 2. 配置服务器请求处理器 按照一定的规范返回请求
         VertxHttpServer vertxHttpServer = new VertxHttpServer();
-        vertxHttpServer.doStart(8080);
+        RpcConfig rpcConfig = RpcApplication.getRpcConfig();
+        vertxHttpServer.doStart(rpcConfig.getServerPort());
     }
 }

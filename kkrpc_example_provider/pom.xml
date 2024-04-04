@@ -4,7 +4,7 @@
     <groupId>com.xukang</groupId>
     <artifactId>kkrpc_example_provider</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>Archetype - kkrpc_example_Provider</name>
+    <name>Archetype-kkrpc_example_Provider</name>
     <url>http://maven.apache.org</url>
 
     <dependencies>
@@ -27,7 +27,7 @@
         </dependency>
         <dependency>
             <groupId>com.xukang</groupId>
-            <artifactId>kkprc_easy</artifactId>
+            <artifactId>kkprc_core</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

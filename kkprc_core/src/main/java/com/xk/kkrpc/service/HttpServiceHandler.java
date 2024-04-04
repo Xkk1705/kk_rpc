@@ -22,13 +22,6 @@ import java.lang.reflect.Method;
 public class HttpServiceHandler implements Handler<HttpServerRequest> {
     @Override
     public void handle(HttpServerRequest request) {
-        //反序列化请求为对象，并从请求对象中获取参数。
-        //
-        //根据服务名称从本地注册器中获取到对应的服务实现类。
-        //
-        //通过反射机制调用方法，得到返回结果。
-        //
-        //对返回结果进行封装和序列化，并写入到响应中。
 
         // 指定序列化器
         final Serializer serializer = new JdkSerializer();
@@ -37,6 +30,7 @@ public class HttpServiceHandler implements Handler<HttpServerRequest> {
         System.out.println("Received request: " + request.method() + " " + request.uri());
 
         // 异步处理 HTTP 请求
+        //1. 反序列化请求为对象，并从请求对象中获取参数。
         request.bodyHandler(body -> {
             byte[] bytes = body.getBytes();
             RpcRequest rpcRequest = null;
@@ -56,11 +50,14 @@ public class HttpServiceHandler implements Handler<HttpServerRequest> {
             }
 
             try {
+                //2. 根据服务名称从本地注册器中获取到对应的服务实现类。
                 // 获取要调用的服务实现类，通过反射调用
                 Class<?> implClass = LocalRegister.get(rpcRequest.getServiceName());
                 Method method = implClass.getMethod(rpcRequest.getMethodName(), rpcRequest.getParameterTypes());
+                //3. 通过反射机制调用方法，得到返回结果。
                 Object result = method.invoke(implClass.newInstance(), rpcRequest.getArgs());
                 // 封装返回结果
+                //4. 对返回结果进行封装和序列化，并写入到响应中。
                 String jsonStr = JSONUtil.toJsonStr(result);
                 rpcResponse.setData(jsonStr);
                 rpcResponse.setDataType(method.getReturnType());

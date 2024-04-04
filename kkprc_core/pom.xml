@@ -2,9 +2,9 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.xukang</groupId>
-  <artifactId>kkprc_easy</artifactId>
+  <artifactId>kkprc_core</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <name>Archetype - kkprc_easy</name>
+  <name>Archetype-kkprc_core</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
@@ -22,12 +22,13 @@
       <artifactId>hutool-all</artifactId>
       <version>5.8.16</version>
     </dependency>
-    <!-- https://projectlombok.org/ -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <version>1.18.30</version>
       <scope>provided</scope>
     </dependency>
+    <!-- https://projectlombok.org/ -->
+
   </dependencies>
 </project>

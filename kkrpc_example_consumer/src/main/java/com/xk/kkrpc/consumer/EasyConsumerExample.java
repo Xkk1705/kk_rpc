@@ -1,7 +1,9 @@
 package com.xk.kkrpc.consumer;
 
+import com.xk.kkrpc.RpcApplication;
 import com.xk.kkrpc.common.model.User;
 import com.xk.kkrpc.common.service.UserService;
+import com.xk.kkrpc.config.RpcConfig;
 import com.xk.kkrpc.consumer.proxy.ServiceProxyFactory;
 
 /**
@@ -15,5 +17,7 @@ public class EasyConsumerExample {
         user.setName("xukang");
         User user1 = userService.getUser(user);
         System.out.println(user1.getName());
+        RpcConfig rpcConfig = RpcApplication.getRpcConfig();
+        System.out.println(rpcConfig);
     }
 }
