@@ -3,7 +3,7 @@ package com.xk.kkrpc;
 import com.xk.kkrpc.config.RpcConfig;
 import com.xk.kkrpc.utils.ConfigUtils;
 
-import static com.xk.kkrpc.contant.RpcConstant.RPC_CONFIG_PREFIX;
+import static com.xk.kkrpc.constant.RpcConstant.RPC_CONFIG_PREFIX;
 
 /**
  * Rpc框架应用

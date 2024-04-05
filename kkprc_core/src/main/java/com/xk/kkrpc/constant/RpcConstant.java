@@ -1,4 +1,4 @@
-package com.xk.kkrpc.contant;
+package com.xk.kkrpc.constant;
 
 /**
  * Rpc全局配置全局的全局变量

@@ -14,5 +14,8 @@ public class EasyProvider {
         VertxHttpServer vertxHttpServer = new VertxHttpServer();
         RpcConfig rpcConfig = RpcApplication.getRpcConfig();
         vertxHttpServer.doStart(rpcConfig.getServerPort());
+        String url = rpcConfig.getServerHost() + ":" + rpcConfig.getServerPort();
+        System.out.println(url);
+        System.out.println(rpcConfig.getMock());
     }
 }

@@ -3,7 +3,9 @@ package com.xk.kkrpc.consumer.proxy;
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
 import cn.hutool.json.JSONUtil;
+import com.xk.kkrpc.RpcApplication;
 import com.xk.kkrpc.common.model.User;
+import com.xk.kkrpc.config.RpcConfig;
 import com.xk.kkrpc.model.RpcRequest;
 import com.xk.kkrpc.model.RpcResponse;
 import com.xk.kkrpc.serializer.JdkSerializer;
@@ -34,7 +36,9 @@ public class ServiceProxy implements InvocationHandler {
             byte[] bodyBytes = serializer.serialize(rpcRequest);
             // 发送请求
             // todo 注意，这里地址被硬编码了（需要使用注册中心和服务发现机制解决）
-            try (HttpResponse httpResponse = HttpRequest.post("http://localhost:8080")
+            RpcConfig rpcConfig = RpcApplication.getRpcConfig();
+            String url = rpcConfig.getServerHost() + ":" + rpcConfig.getServerPort();
+            try (HttpResponse httpResponse = HttpRequest.post(url)
                     .body(bodyBytes)
                     .execute()) {
                 byte[] result = httpResponse.bodyBytes();

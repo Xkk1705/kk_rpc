@@ -12,6 +12,7 @@ import com.xk.kkrpc.serializer.Serializer;
 
 import java.io.IOException;
 
+@Deprecated
 public class UserServiceProxy implements UserService {
 
     public User getUser(User user) {

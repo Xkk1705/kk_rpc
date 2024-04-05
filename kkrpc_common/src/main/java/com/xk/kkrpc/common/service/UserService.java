@@ -7,4 +7,8 @@ import com.xk.kkrpc.common.model.User;
  */
 public interface UserService {
     User getUser(User user);
+
+    default int getNum(){
+        return 1000;
+    }
 }
