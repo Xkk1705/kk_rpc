@@ -1,6 +1,7 @@
 package com.xk.kkrpc.config;
 
 
+import com.xk.kkrpc.constant.SerializerKeys;
 import lombok.Data;
 
 /**
@@ -28,4 +29,9 @@ public class RpcConfig {
      * 是否开启mock
      */
     private Boolean mock = false;
+
+    /**
+     * 是否开启mock
+     */
+    private String serializer = SerializerKeys.JDK;
 }

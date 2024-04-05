@@ -20,7 +20,6 @@ public class RpcApplication {
     public static void init(RpcConfig newRpcConfig) {
         rpcConfig = newRpcConfig;
     }
-
     /**
      * 初始化
      */

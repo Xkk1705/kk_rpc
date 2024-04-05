@@ -1,11 +1,14 @@
 package com.xk.kkrpc.service;
 
 import cn.hutool.json.JSONUtil;
+import com.xk.kkrpc.RpcApplication;
+import com.xk.kkrpc.config.RpcConfig;
 import com.xk.kkrpc.model.RpcRequest;
 import com.xk.kkrpc.model.RpcResponse;
 import com.xk.kkrpc.register.LocalRegister;
 import com.xk.kkrpc.serializer.JdkSerializer;
 import com.xk.kkrpc.serializer.Serializer;
+import com.xk.kkrpc.serializer.SerializerFactory;
 import io.vertx.core.Handler;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.http.HttpServerRequest;
@@ -24,7 +27,9 @@ public class HttpServiceHandler implements Handler<HttpServerRequest> {
     public void handle(HttpServerRequest request) {
 
         // 指定序列化器
-        final Serializer serializer = new JdkSerializer();
+//        final Serializer serializer = new JdkSerializer();
+        RpcConfig rpcConfig = RpcApplication.getRpcConfig();
+        Serializer serializer = SerializerFactory.getInstance(rpcConfig.getSerializer());
 
         // 记录日志
         System.out.println("Received request: " + request.method() + " " + request.uri());

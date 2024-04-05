@@ -17,5 +17,6 @@ public class EasyProvider {
         String url = rpcConfig.getServerHost() + ":" + rpcConfig.getServerPort();
         System.out.println(url);
         System.out.println(rpcConfig.getMock());
+        System.out.println(rpcConfig.getSerializer());
     }
 }

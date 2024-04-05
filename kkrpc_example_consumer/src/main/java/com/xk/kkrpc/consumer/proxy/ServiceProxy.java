@@ -10,6 +10,7 @@ import com.xk.kkrpc.model.RpcRequest;
 import com.xk.kkrpc.model.RpcResponse;
 import com.xk.kkrpc.serializer.JdkSerializer;
 import com.xk.kkrpc.serializer.Serializer;
+import com.xk.kkrpc.serializer.SerializerFactory;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
@@ -23,7 +24,9 @@ public class ServiceProxy implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         //指定序列化
-        Serializer serializer = new JdkSerializer();
+//        Serializer serializer = new JdkSerializer();
+        RpcConfig rpcConfig = RpcApplication.getRpcConfig();
+        Serializer serializer = SerializerFactory.getInstance(rpcConfig.getSerializer());
         // 封装rpc请求
         RpcRequest rpcRequest = RpcRequest.builder().serviceName(method.getDeclaringClass().getName())
                 .methodName(method.getName())
@@ -36,7 +39,6 @@ public class ServiceProxy implements InvocationHandler {
             byte[] bodyBytes = serializer.serialize(rpcRequest);
             // 发送请求
             // todo 注意，这里地址被硬编码了（需要使用注册中心和服务发现机制解决）
-            RpcConfig rpcConfig = RpcApplication.getRpcConfig();
             String url = rpcConfig.getServerHost() + ":" + rpcConfig.getServerPort();
             try (HttpResponse httpResponse = HttpRequest.post(url)
                     .body(bodyBytes)
