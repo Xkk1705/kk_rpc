@@ -1,6 +1,7 @@
 package com.xk.kkrpc.config;
 
 
+import com.xk.kkrpc.constant.RegisterConstant;
 import com.xk.kkrpc.constant.SerializerKeys;
 import lombok.Data;
 
@@ -31,7 +32,12 @@ public class RpcConfig {
     private Boolean mock = false;
 
     /**
-     * 是否开启mock
+     * 序列化器
      */
     private String serializer = SerializerKeys.JDK;
+
+    /**
+     * 注册中心
+     */
+    private String register = RegisterConstant.REGISTER_ETCD;
 }

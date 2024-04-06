@@ -1,7 +1,11 @@
 package com.xk.kkrpc;
 
+import com.xk.kkrpc.config.RegisterConfig;
 import com.xk.kkrpc.config.RpcConfig;
+import com.xk.kkrpc.register.Register;
+import com.xk.kkrpc.register.RegisterFactory;
 import com.xk.kkrpc.utils.ConfigUtils;
+import lombok.extern.slf4j.Slf4j;
 
 import static com.xk.kkrpc.constant.RpcConstant.RPC_CONFIG_PREFIX;
 
@@ -9,6 +13,7 @@ import static com.xk.kkrpc.constant.RpcConstant.RPC_CONFIG_PREFIX;
  * Rpc框架应用
  * 存放了项目全局用到的变量，双检锁单例模式实现
  */
+@Slf4j
 public class RpcApplication {
     public static volatile RpcConfig rpcConfig;
 
@@ -18,8 +23,16 @@ public class RpcApplication {
      * @param newRpcConfig
      */
     public static void init(RpcConfig newRpcConfig) {
+        log.info("rpc init, config = {}", newRpcConfig.toString());
         rpcConfig = newRpcConfig;
+        // 初始化注册中心
+        String registerName = rpcConfig.getRegister();
+        Register register = RegisterFactory.getInstance(registerName);
+        // todo 注册中心的配置需要从配置文件中读取 后面实现
+        RegisterConfig registerConfig = new RegisterConfig();
+        register.init(registerConfig);
     }
+
     /**
      * 初始化
      */

@@ -6,15 +6,19 @@ import cn.hutool.json.JSONUtil;
 import com.xk.kkrpc.RpcApplication;
 import com.xk.kkrpc.common.model.User;
 import com.xk.kkrpc.config.RpcConfig;
+import com.xk.kkrpc.constant.RegisterConstant;
 import com.xk.kkrpc.model.RpcRequest;
 import com.xk.kkrpc.model.RpcResponse;
-import com.xk.kkrpc.serializer.JdkSerializer;
+import com.xk.kkrpc.model.ServiceMateInfo;
+import com.xk.kkrpc.register.Register;
+import com.xk.kkrpc.register.RegisterFactory;
 import com.xk.kkrpc.serializer.Serializer;
 import com.xk.kkrpc.serializer.SerializerFactory;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.util.List;
 
 /**
  * 服务类动态代理
@@ -38,9 +42,15 @@ public class ServiceProxy implements InvocationHandler {
             // 序列化
             byte[] bodyBytes = serializer.serialize(rpcRequest);
             // 发送请求
-            // todo 注意，这里地址被硬编码了（需要使用注册中心和服务发现机制解决）
-            String url = rpcConfig.getServerHost() + ":" + rpcConfig.getServerPort();
-            try (HttpResponse httpResponse = HttpRequest.post(url)
+            Register register = RegisterFactory.getInstance(RpcApplication.getRpcConfig().getRegister());
+            ServiceMateInfo serviceMetaInfo = new ServiceMateInfo();
+            serviceMetaInfo.setServiceName(rpcRequest.getServiceName());
+            serviceMetaInfo.setServiceVersion(RegisterConstant.SERVICE_VERSION);
+            List<ServiceMateInfo> serviceMateInfos = register.serviceDiscovery(serviceMetaInfo);
+            ServiceMateInfo serviceMateInfo = serviceMateInfos.get(0);
+            String serviceAddress = serviceMateInfo.getServiceAddress();
+//            String url = rpcConfig.getServerHost() + ":" + rpcConfig.getServerPort();
+            try (HttpResponse httpResponse = HttpRequest.post(serviceAddress)
                     .body(bodyBytes)
                     .execute()) {
                 byte[] result = httpResponse.bodyBytes();
