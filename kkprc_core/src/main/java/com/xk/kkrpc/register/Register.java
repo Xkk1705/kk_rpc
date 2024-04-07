@@ -45,6 +45,11 @@ public interface Register {
     void heartBeat();
 
     /**
+     * 根据注册服务节点 监听etcd注册中心的服务变化
+     */
+    void watch(String registerServiceNodeKey);
+
+    /**
      * 服务销毁
      */
     void destroy();
