@@ -32,12 +32,17 @@ public interface Register {
 
 
     /**
-     * 发现服务11
+     * 发现服务
      *
-     * @param serviceMateInfo
+     * @param ServiceKey
      * @return
      */
-    List<ServiceMateInfo> serviceDiscovery(ServiceMateInfo serviceMateInfo);
+    List<ServiceMateInfo> serviceDiscovery(String ServiceKey);
+
+    /**
+     * 心跳检测
+     */
+    void heartBeat();
 
     /**
      * 服务销毁

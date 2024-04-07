@@ -31,6 +31,8 @@ public class RpcApplication {
         // todo 注册中心的配置需要从配置文件中读取 后面实现
         RegisterConfig registerConfig = new RegisterConfig();
         register.init(registerConfig);
+        // 创建并注册 Shutdown Hook，JVM 退出时执行操作
+        Runtime.getRuntime().addShutdownHook(new Thread(register::destroy));
     }
 
     /**

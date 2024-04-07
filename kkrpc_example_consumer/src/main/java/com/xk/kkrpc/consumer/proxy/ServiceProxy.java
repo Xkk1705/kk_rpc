@@ -46,7 +46,8 @@ public class ServiceProxy implements InvocationHandler {
             ServiceMateInfo serviceMetaInfo = new ServiceMateInfo();
             serviceMetaInfo.setServiceName(rpcRequest.getServiceName());
             serviceMetaInfo.setServiceVersion(RegisterConstant.SERVICE_VERSION);
-            List<ServiceMateInfo> serviceMateInfos = register.serviceDiscovery(serviceMetaInfo);
+            //根据前缀key发现服务节点列表
+            List<ServiceMateInfo> serviceMateInfos = register.serviceDiscovery(serviceMetaInfo.getServiceKey());
             ServiceMateInfo serviceMateInfo = serviceMateInfos.get(0);
             String serviceAddress = serviceMateInfo.getServiceAddress();
 //            String url = rpcConfig.getServerHost() + ":" + rpcConfig.getServerPort();
