@@ -1,15 +1,5 @@
 package com.xk.kkrpc.consumer.proxy;
 
-import cn.hutool.http.HttpRequest;
-import cn.hutool.http.HttpResponse;
-import cn.hutool.json.JSONUtil;
-import com.xk.kkrpc.common.model.User;
-import com.xk.kkrpc.model.RpcRequest;
-import com.xk.kkrpc.model.RpcResponse;
-import com.xk.kkrpc.serializer.JdkSerializer;
-import com.xk.kkrpc.serializer.Serializer;
-
-import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 

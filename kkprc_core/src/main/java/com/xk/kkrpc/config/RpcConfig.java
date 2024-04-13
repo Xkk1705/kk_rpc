@@ -2,6 +2,7 @@ package com.xk.kkrpc.config;
 
 
 import com.xk.kkrpc.constant.RegisterConstant;
+import com.xk.kkrpc.loadbalancer.LoadBalanceKeys;
 import com.xk.kkrpc.serializer.SerializerKeys;
 import lombok.Data;
 
@@ -35,6 +36,11 @@ public class RpcConfig {
      * 序列化器
      */
     private String serializer = SerializerKeys.JDK;
+
+    /**
+     * 负载均衡器
+     */
+    private String loadbalancer = LoadBalanceKeys.ROUND_ROBIN;
 
     /**
      * 注册中心

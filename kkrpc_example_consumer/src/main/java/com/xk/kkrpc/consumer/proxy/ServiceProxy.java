@@ -7,6 +7,8 @@ import com.xk.kkrpc.RpcApplication;
 import com.xk.kkrpc.common.model.User;
 import com.xk.kkrpc.config.RpcConfig;
 import com.xk.kkrpc.constant.RegisterConstant;
+import com.xk.kkrpc.loadbalancer.LoadBalanceFactory;
+import com.xk.kkrpc.loadbalancer.LoadBalancer;
 import com.xk.kkrpc.model.RpcRequest;
 import com.xk.kkrpc.model.RpcResponse;
 import com.xk.kkrpc.model.ServiceMateInfo;
@@ -18,7 +20,9 @@ import com.xk.kkrpc.serializer.SerializerFactory;
 import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 服务类动态代理
@@ -48,7 +52,12 @@ public class ServiceProxy implements InvocationHandler {
             serviceMetaInfo.setServiceVersion(RegisterConstant.SERVICE_VERSION);
             //根据前缀key发现服务节点列表
             List<ServiceMateInfo> serviceMateInfos = register.serviceDiscovery(serviceMetaInfo.getServiceKey());
-            ServiceMateInfo serviceMateInfo = serviceMateInfos.get(0);
+            // 使用指定的负载均衡器 获取服务信息
+            LoadBalancer loadBalancer = LoadBalanceFactory.getInstance(RpcApplication.getRpcConfig().getLoadbalancer());
+            // 将调用方法名作为负载均衡的参数
+            Map<String, Object> requestPara = new HashMap<>();
+            requestPara.put("methodName", rpcRequest.getMethodName());
+            ServiceMateInfo serviceMateInfo = loadBalancer.Select(requestPara, serviceMateInfos);
             String serviceAddress = serviceMateInfo.getServiceAddress();
 //            String url = rpcConfig.getServerHost() + ":" + rpcConfig.getServerPort();
             try (HttpResponse httpResponse = HttpRequest.post(serviceAddress)
