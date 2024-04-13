@@ -1,4 +1,4 @@
-package com.xk.kkrpc.constant;
+package com.xk.kkrpc.serializer;
 
 /**
  * 序列化器constant

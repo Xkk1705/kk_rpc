@@ -1,37 +1,30 @@
 package com.xk.kkrpc.serializer;
 
-import com.xk.kkrpc.constant.SerializerKeys;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import com.xk.kkrpc.spi.SpiLoader;
 
 /**
- * 序列化器工厂
+ * 序列化器工厂(SPI机制实现)
  */
 public class SerializerFactory {
 
-    /**
-     * 初始化序列化器 用于单例模式
-     */
-    public static final Map<String, Serializer> serializerMap = new ConcurrentHashMap() {{
-        put(SerializerKeys.JDK, new JdkSerializer());
-        put(SerializerKeys.JSON, new JsonSerializer());
-        put(SerializerKeys.KRYO, new KryoSerializer());
-        put(SerializerKeys.HESSIAN, new HessianSerializer());
-    }};
-    /**
-     * 默认序列化器对象
-     */
-    private static final Serializer defaultSerializer = serializerMap.get(SerializerKeys.JDK);
+    static {
+        SpiLoader.load(Serializer.class);
+    }
 
     /**
-     * 获取序列化器对象
+     * 默认序列化器
+     */
+    private static final Serializer DEFAULT_SERIALIZER = new JdkSerializer();
+
+    /**
+     * 获取实例
      *
-     * @param serializerKeys
+     * @param key
      * @return
      */
-    public static Serializer getInstance(String serializerKeys) {
-        return serializerMap.getOrDefault(serializerKeys, defaultSerializer);
+    public static Serializer getInstance(String key) {
+        return SpiLoader.getInstance(Serializer.class, key);
     }
 
 }

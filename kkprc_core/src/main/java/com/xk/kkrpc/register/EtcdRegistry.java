@@ -10,7 +10,6 @@ import com.xk.kkrpc.model.ServiceMateInfo;
 import io.etcd.jetcd.*;
 import io.etcd.jetcd.options.GetOption;
 import io.etcd.jetcd.options.PutOption;
-import io.etcd.jetcd.options.WatchOption;
 import io.etcd.jetcd.watch.WatchEvent;
 import io.vertx.core.impl.ConcurrentHashSet;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +34,7 @@ public class EtcdRegistry implements Register {
     /**
      * 根节点
      */
-    private static final String ETCD_ROOT_PATH = "/rpc/";
+    private static final String ETCD_ROOT_PATH = "/META-INF/rpc/";
 
     /**
      * 本机注册的节点 key 集合（用于维护续期）
@@ -103,7 +102,7 @@ public class EtcdRegistry implements Register {
         }
         // 这里是前缀搜索 所以和注册服务的键是不同的 取上一层作为 发现的键
         String searchKey = ETCD_ROOT_PATH + getServiceKey + "/";
-        ;
+
         // 取出注册中心的注册服务 并返回
         try {
             GetOption getOption = GetOption.builder().isPrefix(true).build();

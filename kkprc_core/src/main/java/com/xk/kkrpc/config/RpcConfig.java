@@ -2,7 +2,7 @@ package com.xk.kkrpc.config;
 
 
 import com.xk.kkrpc.constant.RegisterConstant;
-import com.xk.kkrpc.constant.SerializerKeys;
+import com.xk.kkrpc.serializer.SerializerKeys;
 import lombok.Data;
 
 /**

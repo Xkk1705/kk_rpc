@@ -1,9 +1,7 @@
 package com.xk.kkrpc.consumer;
 
-import com.xk.kkrpc.RpcApplication;
 import com.xk.kkrpc.common.model.User;
 import com.xk.kkrpc.common.service.UserService;
-import com.xk.kkrpc.config.RpcConfig;
 import com.xk.kkrpc.consumer.proxy.ServiceProxyFactory;
 
 /**

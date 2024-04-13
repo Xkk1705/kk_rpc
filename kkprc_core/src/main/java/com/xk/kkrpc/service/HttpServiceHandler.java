@@ -6,7 +6,6 @@ import com.xk.kkrpc.config.RpcConfig;
 import com.xk.kkrpc.model.RpcRequest;
 import com.xk.kkrpc.model.RpcResponse;
 import com.xk.kkrpc.register.LocalRegister;
-import com.xk.kkrpc.serializer.JdkSerializer;
 import com.xk.kkrpc.serializer.Serializer;
 import com.xk.kkrpc.serializer.SerializerFactory;
 import io.vertx.core.Handler;
