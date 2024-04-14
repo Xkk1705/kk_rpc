@@ -18,7 +18,7 @@ public class RpcResponse implements Serializable {
     /**
      * 响应数据
      */
-    private String data;
+    private Object data;
 
     /**
      * 响应信息

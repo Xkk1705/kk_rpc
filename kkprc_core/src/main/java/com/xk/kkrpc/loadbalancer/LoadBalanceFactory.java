@@ -12,7 +12,7 @@ public class LoadBalanceFactory {
     }
 
     /**
-     * 默认序列化器
+     * 默认负载均衡器
      */
     private static final LoadBalancer DEFAULT_LOAD_BALANCE = new RoundRobinLoadBalancer();
 

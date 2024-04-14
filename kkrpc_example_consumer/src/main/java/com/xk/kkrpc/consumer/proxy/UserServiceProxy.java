@@ -35,7 +35,7 @@ public class UserServiceProxy implements UserService {
                 result = httpResponse.bodyBytes();
             }
             RpcResponse rpcResponse = serializer.deserialize(result, RpcResponse.class);
-            return JSONUtil.toBean(rpcResponse.getData(), User.class);
+            return (User) rpcResponse.getData();
         } catch (IOException e) {
             e.printStackTrace();
         }

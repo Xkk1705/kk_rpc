@@ -62,8 +62,8 @@ public class HttpServiceHandler implements Handler<HttpServerRequest> {
                 Object result = method.invoke(implClass.newInstance(), rpcRequest.getArgs());
                 // 封装返回结果
                 //4. 对返回结果进行封装和序列化，并写入到响应中。
-                String jsonStr = JSONUtil.toJsonStr(result);
-                rpcResponse.setData(jsonStr);
+//                String jsonStr = JSONUtil.toJsonStr(result);
+                rpcResponse.setData(result);
                 rpcResponse.setDataType(method.getReturnType());
                 rpcResponse.setMessage("ok");
             } catch (Exception e) {

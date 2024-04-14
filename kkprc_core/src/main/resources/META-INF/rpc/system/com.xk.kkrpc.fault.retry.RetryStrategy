@@ -1,0 +1,2 @@
+no=com.xk.kkrpc.fault.retry.NoRetryStrategy
+fixed=com.xk.kkrpc.fault.retry.FixedTimeRetryStrategy
