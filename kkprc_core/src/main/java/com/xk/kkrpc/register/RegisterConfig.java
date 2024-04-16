@@ -1,4 +1,4 @@
-package com.xk.kkrpc.config;
+package com.xk.kkrpc.register;
 
 import lombok.Data;
 

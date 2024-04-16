@@ -1,6 +1,6 @@
 package com.xk.kkrpc;
 
-import com.xk.kkrpc.config.RegisterConfig;
+import com.xk.kkrpc.register.RegisterConfig;
 import com.xk.kkrpc.config.RpcConfig;
 import com.xk.kkrpc.register.Register;
 import com.xk.kkrpc.register.RegisterFactory;

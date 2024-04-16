@@ -1,0 +1,4 @@
+failBack=com.xk.kkrpc.fault.tolerate.FailBackTolerateStrategy
+failFast=com.xk.kkrpc.fault.tolerate.FailFastTolerateStrategy
+failOver=com.xk.kkrpc.fault.tolerate.FailOverTolerateStrategy
+failSafe=com.xk.kkrpc.fault.tolerate.FailSafeTolerateStrategy

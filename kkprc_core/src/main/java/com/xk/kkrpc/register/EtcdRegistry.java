@@ -4,7 +4,6 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.cron.CronUtil;
 import cn.hutool.cron.task.Task;
 import cn.hutool.json.JSONUtil;
-import com.xk.kkrpc.config.RegisterConfig;
 import com.xk.kkrpc.model.RegistryServiceCache;
 import com.xk.kkrpc.model.ServiceMateInfo;
 import io.etcd.jetcd.*;

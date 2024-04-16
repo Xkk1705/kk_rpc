@@ -3,6 +3,7 @@ package com.xk.kkrpc.config;
 
 import com.xk.kkrpc.constant.RegisterConstant;
 import com.xk.kkrpc.fault.retry.RetryStrategyKeys;
+import com.xk.kkrpc.fault.tolerate.TolerantStrategyKeys;
 import com.xk.kkrpc.loadbalancer.LoadBalanceKeys;
 import com.xk.kkrpc.serializer.SerializerKeys;
 import lombok.Data;
@@ -44,9 +45,14 @@ public class RpcConfig {
     private String loadbalancer = LoadBalanceKeys.ROUND_ROBIN;
 
     /**
-     * 负载均衡器
+     * 重试策略
      */
     private String retry = RetryStrategyKeys.NO_RETRY;
+
+    /**
+     * 容错策略
+     */
+    private String tolerate = TolerantStrategyKeys.FAIL_FAST;
 
     /**
      * 注册中心

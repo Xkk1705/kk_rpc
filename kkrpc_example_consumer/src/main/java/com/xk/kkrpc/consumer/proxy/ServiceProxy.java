@@ -7,6 +7,8 @@ import com.xk.kkrpc.config.RpcConfig;
 import com.xk.kkrpc.constant.RegisterConstant;
 import com.xk.kkrpc.fault.retry.RetryStrategy;
 import com.xk.kkrpc.fault.retry.RetryStrategyFactory;
+import com.xk.kkrpc.fault.tolerate.TolerateFactory;
+import com.xk.kkrpc.fault.tolerate.TolerateStrategy;
 import com.xk.kkrpc.loadbalancer.LoadBalanceFactory;
 import com.xk.kkrpc.loadbalancer.LoadBalancer;
 import com.xk.kkrpc.model.RpcRequest;
@@ -48,7 +50,12 @@ public class ServiceProxy implements InvocationHandler {
             return retryStrategy.doRetry(() -> doRequest(rpcRequest, serializer));
 //            return doRequest(rpcRequest, serializer);
         } catch (IOException e) {
-            e.printStackTrace();
+            // 容错机制
+            TolerateStrategy tolerateStrategy = TolerateFactory.getInstance(RpcApplication.getRpcConfig().getTolerate());
+            // 构建服务请求上下文
+            HashMap<String, Object> contextMap = new HashMap<>();
+            contextMap.put("rpcRequest", rpcRequest);
+            tolerateStrategy.doTolerate(contextMap, e);
         }
         return null;
     }

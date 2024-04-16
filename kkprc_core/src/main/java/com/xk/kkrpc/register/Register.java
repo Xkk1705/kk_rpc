@@ -1,6 +1,5 @@
 package com.xk.kkrpc.register;
 
-import com.xk.kkrpc.config.RegisterConfig;
 import com.xk.kkrpc.model.ServiceMateInfo;
 
 import java.util.List;
