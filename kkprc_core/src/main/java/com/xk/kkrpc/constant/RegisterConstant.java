@@ -5,5 +5,5 @@ package com.xk.kkrpc.constant;
  */
 public interface RegisterConstant {
     public static final String REGISTER_ETCD = "etcd";
-    public static final String SERVICE_VERSION = "version_1.0";
+    public static final String SERVICE_VERSION = "version1.0";
 }
