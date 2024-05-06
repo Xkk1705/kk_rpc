@@ -8,16 +8,16 @@
 核心架构：包括消费方调用、序列化器、网络服务器、请求处理器、注册中心、负载均衡器、重试策略、容错策略等模块。
 
 **RPC结构**
-https://github.com/Xkk1705/kk_rpc/assets/97894317/9ce1e041-50a4-47ee-9a79-aa7da5467f5b
+![](https://github.com/Xkk1705/kk_rpc/assets/97894317/9ce1e041-50a4-47ee-9a79-aa7da5467f5b)
 
 **服务注册发现**
-![](![image](https://github.com/Xkk1705/kk_rpc/assets/97894317/68fca782-07c4-4905-abce-78d5632dc0ba))
+![](https://github.com/Xkk1705/kk_rpc/assets/97894317/68fca782-07c4-4905-abce-78d5632dc0ba)
 
 **负载均衡**
-![](![image](https://github.com/Xkk1705/kk_rpc/assets/97894317/cc9e7a5a-c7ac-4897-9fea-ffcf520cc0b0))
+![](https://github.com/Xkk1705/kk_rpc/assets/97894317/cc9e7a5a-c7ac-4897-9fea-ffcf520cc0b0)
 
 **容错机制**
-![](![image](https://github.com/Xkk1705/kk_rpc/assets/97894317/d4faeb7f-56d7-4466-a676-13844545dbed))
+![](https://github.com/Xkk1705/kk_rpc/assets/97894317/d4faeb7f-56d7-4466-a676-13844545dbed)
 
 1. 消费方调用：基于 JDK 动态代理 + 工厂模式实现消费方调用模块，为指定服务接口类生成可发送 HTTP 请求的代理对象，实现远程方法	的无感知调用。
 2. 全局配置加载：使用双检锁单例模式维护全局配置对象，并通过 Hutool 的 Props 实现多环境配置文件的加载。
