@@ -8,7 +8,7 @@
 核心架构：包括消费方调用、序列化器、网络服务器、请求处理器、注册中心、负载均衡器、重试策略、容错策略等模块。
 
 **RPC结构**
-![](![image](https://github.com/Xkk1705/kk_rpc/assets/97894317/9ce1e041-50a4-47ee-9a79-aa7da5467f5b))
+https://github.com/Xkk1705/kk_rpc/assets/97894317/9ce1e041-50a4-47ee-9a79-aa7da5467f5b
 
 **服务注册发现**
 ![](![image](https://github.com/Xkk1705/kk_rpc/assets/97894317/68fca782-07c4-4905-abce-78d5632dc0ba))
